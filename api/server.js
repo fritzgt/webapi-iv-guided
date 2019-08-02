@@ -10,7 +10,7 @@ server.use(express.json());
 
 server.get('/', async (req, res) => {
   try {
-    const shoutouts = await db('shoutouts');
+    const shoutouts = await db('shouts');
     const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
     res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
   } catch (error) {
