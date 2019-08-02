@@ -10,11 +10,12 @@ server.use(express.json());
 
 server.get('/', async (req, res) => {
   try {
-    const shouts = await db('shouts');
-    res.status(200).json({ messageOfTheDay: process.envMOTD, shouts });
+    const shoutouts = await db('shoutouts');
+    const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
+    res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
   } catch (error) {
     console.error('\nERROR', error);
-    res.status(500).json({ error: 'Cannot retrieve the shouts' });
+    res.status(500).json({ error: 'Cannot retrieve the shoutouts' });
   }
 });
 
